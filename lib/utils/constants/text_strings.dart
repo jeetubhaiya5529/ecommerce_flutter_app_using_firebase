@@ -11,7 +11,7 @@ class TTexts {
       'From Our Doorstep to Yours - Swift, Secure, and Contactless Delivery!';
 
   static const String homeAppBarTitle = 'Good Day for Shopping';
-  static const String homeAppBarSubTitle = 'Noob Tech';
+  static const String homeAppBarSubTitle = 'User';
 
   static const String firstName = 'First Name';
   static const String lastName = 'Last Name';
@@ -39,6 +39,8 @@ class TTexts {
   static const String yourAccountCreatedSubTitle = 'Welcome to your ultimate shopping destinaion: your account is created unleash the joy of seamless online shopping';
   static const String submit = 'Submit';
   static const String done = 'Done';
+  static const String searchInStore = 'Search in Store';
+  static const String popularCategories = 'Popular Categories';
 
   static const String loginTitle = 'Welcome back,';
   static const String loginSubTitle =

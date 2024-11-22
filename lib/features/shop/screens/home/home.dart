@@ -1,4 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:t_store/common/widgets/custom_shapes/containers/primary_header_container.dart';
+import 'package:t_store/common/widgets/custom_shapes/containers/search_container.dart';
+import 'package:t_store/common/widgets/layouts/grid_layout.dart';
+import 'package:t_store/common/widgets/products/product_cards/product_card_vertical.dart';
+import 'package:t_store/common/widgets/texts/section_heading.dart';
+import 'package:t_store/features/shop/screens/home/widgets/home_appbar.dart';
+import 'package:t_store/features/shop/screens/home/widgets/home_categories.dart';
+import 'package:t_store/features/shop/screens/home/widgets/promo_slider.dart';
+import 'package:t_store/utils/constants/colors.dart';
+import 'package:t_store/utils/constants/image_strings.dart';
+import 'package:t_store/utils/constants/sizes.dart';
+import 'package:t_store/utils/constants/text_strings.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,106 +26,68 @@ class _HomePageState extends State<HomeScreen> {
         body: SingleChildScrollView(
       child: Column(
         children: [
-          ClipPath(
-            clipper: CustomCurvedEdges(),
-            child: Container(
-              color: Colors.blue,
-              padding: const EdgeInsets.all(0),
-              child: SizedBox(
-                height: 400,
-                child: Stack(
-                  children: [
-                    Positioned(
-                      top: -150,
-                      right: -250,
-                      child: CircularContainer(
-                        backgroundColor: Colors.white.withOpacity(0.1),
+          const PrimaryHeaderContainer(
+            child: Column(
+              children: [
+                // App Bar
+                HomeAppBar(),
+                SizedBox(height: TSizes.spaceBtwSections),
+
+                // Search Bar
+                SearchContainer(text: TTexts.searchInStore),
+                SizedBox(height: TSizes.spaceBtwSections),
+
+                // Categories
+                Padding(
+                  padding: EdgeInsets.only(left: TSizes.defaultSpace),
+                  child: Column(
+                    children: [
+                      // Heading
+                      SectionHeading(
+                        title: TTexts.popularCategories,
+                        showActionButton: false,
+                        textColor: TColors.white,
                       ),
-                    ),
-                    Positioned(
-                      top: 100,
-                      right: -300,
-                      child: CircularContainer(
-                        backgroundColor: Colors.white.withOpacity(0.1),
-                      ),
-                    ),
-                    // Column(
-                    //   children: [
-                    //     // App Bar
-                    //     // Search Bar
-                    //     // Category
-                    //   ],
-                    // )
-                  ],
-                ),
-              ),
+                      SizedBox(height: TSizes.spaceBtwItems),
+
+                      // Categories List
+                      HomeCategories()
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
+
+          // Body
+          Padding(
+            padding: const EdgeInsets.all(TSizes.defaultSpace),
+            child: Column(
+              children: [
+                // Promo Slider
+                const PromoSlider(
+                  banner: [
+                    TImages.promoBanner1,
+                    TImages.promoBanner2,
+                    TImages.promoBanner3
+                  ],
+                ),
+                const SizedBox(height: TSizes.spaceBtwItems),
+
+                // Heading
+                SectionHeading(title: 'Popular Products', onPressed: (){},),
+                const SizedBox(height: TSizes.spaceBtwItems),
+
+                // Popular Products
+                GridLayout(
+                  itemCount: 4,
+                  itemBuilder: (_, index) => const ProductCardVertical(),
+                ),
+              ],
+            ),
+          )
         ],
       ),
     ));
-  }
-}
-
-class CircularContainer extends StatelessWidget {
-  const CircularContainer({
-    super.key,
-    this.width = 400,
-    this.height = 400,
-    this.radius = 400,
-    this.padding = 0,
-    this.child,
-    this.backgroundColor = Colors.white,
-  });
-
-  final double? width;
-  final double? height;
-  final double radius;
-  final double padding;
-  final Widget? child;
-  final Color backgroundColor;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      width: width,
-      padding: EdgeInsets.all(padding),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(radius), color: backgroundColor),
-      child: child,
-    );
-  }
-}
-
-class CustomCurvedEdges extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    var path = Path();
-    path.lineTo(0, size.height);
-
-    final firstCurve = Offset(0, size.height - 20);
-    final lastCurve = Offset(30, size.height - 20);
-    path.quadraticBezierTo(
-        firstCurve.dx, firstCurve.dy, lastCurve.dx, lastCurve.dy);
-
-    final secondFirstCurve = Offset(0, size.height - 20);
-    final secondLastCurve = Offset(size.width - 30, size.height - 20);
-    path.quadraticBezierTo(secondFirstCurve.dx, secondFirstCurve.dy,
-        secondLastCurve.dx, secondLastCurve.dy);
-
-    final thirdFirstCurve = Offset(size.width, size.height - 20);
-    final thirdLastCurve = Offset(size.width, size.height);
-    path.quadraticBezierTo(thirdFirstCurve.dx, thirdFirstCurve.dy,
-        thirdLastCurve.dx, thirdLastCurve.dy);
-
-    path.lineTo(size.width, 0);
-    path.close();
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    return true;
   }
 }

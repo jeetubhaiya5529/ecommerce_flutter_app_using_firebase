@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/utils/constants/sizes.dart';
+import 'package:t_store/utils/device/device_utility.dart';
 
-class TAppBar extends StatelessWidget {
-  const TAppBar(
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const CustomAppBar(
       {super.key,
       this.title,
-      this.showBackArrow = true,
+      this.showBackArrow = false,
       this.leadingIcon,
       this.actions,
       this.leadingOnPressed});
@@ -37,4 +38,7 @@ class TAppBar extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  Size get preferredSize => Size.fromHeight(TDeviceUtils.getAppBarHeight());
 }
