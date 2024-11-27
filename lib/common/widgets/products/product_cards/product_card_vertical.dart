@@ -76,17 +76,19 @@ class ProductCardVertical extends StatelessWidget {
             ),
 
             // Details
-            Padding(
-              padding: const EdgeInsets.only(left: TSizes.sm),
+            const Padding(
+              padding: EdgeInsets.only(left: TSizes.sm),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const ProductTitleText(
+                  ProductTitleText(
                     title: 'Grey Nike Air Jordan Shoes',
                     smallSize: true,
                   ),
-                  const SizedBox(height: TSizes.spaceBtwItems / 2),
-                  BrandTitleWithVerifiedIcon(title: 'Nike',),
+                  SizedBox(height: TSizes.spaceBtwItems / 2),
+                  BrandTitleWithVerifiedIcon(
+                    title: 'Nike',
+                  ),
                 ],
               ),
             ),

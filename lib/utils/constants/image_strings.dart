@@ -44,9 +44,9 @@ class TImages {
   static const String promoBanner1 =
       'assets/images/promo_banner/promoBanner1.jpg';
   static const String promoBanner2 =
-      'assets/images/promo_banner/promoBanner1.jpg';
+      'assets/images/promo_banner/promoBanner2.jpg';
   static const String promoBanner3 =
-      'assets/images/promo_banner/promoBanner1.jpg';
+      'assets/images/promo_banner/promoBanner3.jpg';
 
   static const String productImage1 =
       'assets/images/products/productImage1.png';
@@ -58,4 +58,8 @@ class TImages {
       'assets/images/products/productImage4.png';
   static const String productImage5 =
       'assets/images/products/productImage5.png';
+
+  // User Profile
+  static const String user =
+      'assets/images/user/man.png';
 }

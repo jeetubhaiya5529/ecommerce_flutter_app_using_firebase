@@ -54,7 +54,8 @@ class _HomePageState extends State<HomeScreen> {
                       HomeCategories()
                     ],
                   ),
-                )
+                ),
+                SizedBox(height: TSizes.spaceBtwSections),
               ],
             ),
           ),
